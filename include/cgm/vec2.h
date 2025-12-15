@@ -1,5 +1,6 @@
 #ifndef CGM_VEC2_H
 #define CGM_VEC2_H
+
 /** 
  * @file vec2.h
  * mathematical operations for 2d vectors (float)
@@ -45,16 +46,6 @@ CGMINLINE vec2 gmVec2neg(vec2 v)
 CGMINLINE vec2 gmVec2splat(float v)
 {
     return gmVec2(v, v);
-}
-
-CGMINLINE vec2 gmVec2zero(void)
-{
-    return CGM_VEC2_ZERO;
-}
-
-CGMINLINE vec2 gmVec2one(void)
-{
-    return CGM_VEC2_ONE;
 }
 
 /*
@@ -144,14 +135,14 @@ CGMINLINE float gmVec2length(vec2 g)
 /*
  * @brief normalize a vector
  *
- * @return normalized vector or CGM_VEC2_ZERO if length is 0.
+ * @return normalized vector or `CGM_VEC2_ZERO` if length is 0.
  * 
  */
 CGMINLINE vec2 gmVec2normalize(vec2 g)
 {
     float length = gmVec2length(g);
-    return (length == 0.0f) ?       gmVec2zero() : 
-    gmVec2(g.x / length, g.y / length);
+    return (length == 0.0f) ?       CGM_VEC2_ZERO : 
+    gmVec2divScale(g, length);
 }
 
 /*
@@ -201,7 +192,7 @@ CGMINLINE vec2 gmVec2refract(vec2 v, vec2 n, float e)
     float d = gmVec2dot(n, v);
     float k = 1.0f - e * e * (1.0f - d * d);
 
-    return (k < 0.0f) ? gmVec2zero() : 
+    return (k < 0.0f) ? CGM_VEC2_ZERO : 
     gmVec2sub(
         gmVec2mulScale(v, e),
         gmVec2mulScale(n, e * d + sqrtf(k))
@@ -321,11 +312,11 @@ CGMINLINE vec2 gmVec2step(vec2 e, vec2 v)
  *  0.0 if x <= e0
  *  1.0 if x >= e1
  */
-CGMINLINE vec2 gmVec2smoothStep(vec2 e0, vec2 e1, vec2 x)
+CGMINLINE vec2 gmVec2smoothstep(vec2 e0, vec2 e1, vec2 x)
 {
     return gmVec2(
-        gmSmoothStep(e0.x, e1.x, x.x),
-        gmSmoothStep(e0.y, e1.y, x.y)
+        gmSmoothstep(e0.x, e1.x, x.x),
+        gmSmoothstep(e0.y, e1.y, x.y)
     );
 }
 

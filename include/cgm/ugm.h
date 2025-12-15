@@ -1,6 +1,10 @@
 #ifndef UTIL_GRAPHICS_MATH
 #define UTIL_GRAPHICS_MATH
 
+/**
+ * @file ugm.h
+ */
+
 #include "util/core.h"
 #include <math.h>
 
@@ -71,7 +75,7 @@ CGMINLINE float gmStep(float e, float x)
  *
  * @return smoothed value
  */
-CGMINLINE float gmSmoothHermite(float t)
+CGMINLINE float gmSmooth(float t)
 {
     return t * t * (3.0f - 2.0f * t);
 }
@@ -87,10 +91,10 @@ CGMINLINE float gmSmoothHermite(float t)
  *  0.0 if x <= e0
  *  1.0 if x >= e1
  */
-CGMINLINE float gmSmoothStep(float e0, float e1, float x)
+CGMINLINE float gmSmoothstep(float e0, float e1, float x)
 {
     float t = gmClamp((x - e0) / (e1 - e0), 0.0f, 1.0f);
-    return gmSmoothHermite(t);
+    return gmSmooth(t);
 }
 
 #endif
