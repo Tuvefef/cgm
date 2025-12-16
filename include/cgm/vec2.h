@@ -174,8 +174,6 @@ CGMINLINE vec2 gmVec2reflect(vec2 v, vec2 n)
 
 /*
  * @brief calculates the refracted vector from an incident vector
- *
- * implements Snell's law for 2D refraction. Given a vector
  * 
  * @param v Incident vector
  * @param n surface normal
