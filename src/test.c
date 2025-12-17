@@ -3,9 +3,10 @@
 
 int main()
 {
-    vec3 v0 = gmVec3(1.0, 2.07, 4.0);
-    vec3 v1 = gmVec3(3.0, 4.0, 2.8);
+    vec4 v0 = gmVec4(1.0, 2.07, 4.0, 0.7);
+    vec4 v1 = gmVec4(3.0, 4.0, 2.8, 2.8);
 
-    vec3 vc = gmVec3add(v0, v1);
-    printf("res: %f, %f, %f", vc.x, vc.y, vc.z);
+    vec4 r1 = gmVec4add(v0, v1);
+
+    printf("res1: %f, %f, %f, %f", r1.x, r1.y, r1.z, r1.w);
 }
