@@ -1,2 +1,6 @@
 src/cgmb
 src/main.c
+src/glad.c
+src/xmmt.h
+include/glad/glad.h
+include/KHR/khrplatform.h
