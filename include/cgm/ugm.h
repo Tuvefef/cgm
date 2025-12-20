@@ -97,4 +97,9 @@ CGMINLINE float gmSmoothstep(float e0, float e1, float x)
     return gmSmooth(t);
 }
 
+CGMINLINE float gmFade(float t)
+{
+    return t * t * t * (t * (t * 6.0f - 15.0f) + 10.0f);
+}
+
 #endif

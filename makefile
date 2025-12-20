@@ -1,9 +1,9 @@
 CC = gcc
-SRC = src/main.c 
-BIN = src/cgmb
+SRC = src/test.c 
+BIN = src/cgmtest
 
 all:
-	$(CC) $(SRC) -o $(BIN) -lm
+	$(CC) $(SRC) -o $(BIN) -lm -O3
 
 run:
 	./$(BIN)

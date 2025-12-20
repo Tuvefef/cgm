@@ -318,4 +318,12 @@ CGMINLINE vec2 gmVec2smoothstep(vec2 e0, vec2 e1, vec2 x)
     );
 }
 
+CGMINLINE vec2 gmVec2fade(vec2 v)
+{
+    return gmVec2(
+        gmFade(v.x),
+        gmFade(v.y)
+    );
+}
+
 #endif

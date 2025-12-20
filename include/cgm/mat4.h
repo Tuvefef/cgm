@@ -77,16 +77,45 @@ CGMINLINE mat4 gmMat4scale(float x, float y, float z)
 }
 
 /**
- * @brief z axis rotation matrix
- * @param a angle in radians
+ * @brief x axis rotation matrix
+ * @param ma angle in radians
  */
-CGMINLINE mat4 gmMat4rotate(float a)
+CGMINLINE mat4 gmMat4Xrotate(float ma)
 {
     mat4 m = gmMat4identity();
-    m.m[0] =  cosf(a);
-    m.m[4] = -sinf(a);
-    m.m[1] =  sinf(a);
-    m.m[5] =  cosf(a);
+    m.m[5] =  cosf(ma);
+    m.m[6] = -sinf(ma);
+    m.m[9] =  sinf(ma);
+    m.m[10] = cosf(ma);
+    return m;
+}
+
+/**
+ * @brief y axis rotation matrix
+ * @param ma angle in radians
+ */
+CGMINLINE mat4 gmMat4Yrotate(float ma)
+{
+    mat4 m = gmMat4identity();
+    m.m[0] =  cosf(ma);
+    m.m[2] = -sinf(ma);
+    m.m[8] =  sinf(ma);
+    m.m[10] = cosf(ma);
+    return m;
+}
+
+
+/**
+ * @brief z axis rotation matrix
+ * @param ma angle in radians
+ */
+CGMINLINE mat4 gmMat4Zrotate(float ma)
+{
+    mat4 m = gmMat4identity();
+    m.m[0] =  cosf(ma);
+    m.m[4] = -sinf(ma);
+    m.m[1] =  sinf(ma);
+    m.m[5] =  cosf(ma);
     return m;
 }
 
