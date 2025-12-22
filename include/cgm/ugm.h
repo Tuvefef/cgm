@@ -9,7 +9,7 @@
 #include <math.h>
 
 #define CGM_EPSILON 1e-8f
-#ifndef CGM_ASSUME_NORMALIZED
+#ifndef CGM_AUTO_NORMALIZE
 /*
  * @brief `GCM_ASSUME_NORMALIZED`
  *assume that certain vectors are normalized.
@@ -17,7 +17,7 @@
  *
  *default: 0
  */
-#define CGM_ASSUME_NORMALIZED 0
+#define CGM_AUTO_NORMALIZE 0
 #endif
 
 #define GMMIN(x, y) (((x) < (y)) ? (x) : (y))

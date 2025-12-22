@@ -170,4 +170,142 @@ CGMINLINE mat4 gmMat4lookAt(vec3 mey, vec3 mc, vec3 mup)
     return m;
 }
 
+/**
+ * @brief mat4 inverse
+ * 
+ * calculates the inverse of mat4 in column-major format
+ * 
+ * @note generic function (extensive)
+ */
+CGMINLINE mat4 gmMat4inverse(mat4 m)
+{
+    mat4 r;
+
+    float *ma = m.m;
+    float *mo = r.m;
+
+    mo[0] = ma[5] * ma[10]* ma[15] - 
+            ma[5] * ma[11]* ma[14] - 
+            ma[9] * ma[6] * ma[15] + 
+            ma[9] * ma[7] * ma[14] + 
+            ma[13]* ma[6] * ma[11] - 
+            ma[13]* ma[7] * ma[10];
+
+    mo[4] = -ma[4] * ma[10]* ma[15] + 
+             ma[4] * ma[11]* ma[14] + 
+             ma[8] * ma[6] * ma[15] - 
+             ma[8] * ma[7] * ma[14] - 
+             ma[12]* ma[6] *ma[11]  + 
+             ma[12]* ma[7] *ma[10];
+
+    mo[8] = ma[4] * ma[9] * ma[15] - 
+            ma[4] * ma[11]* ma[13] - 
+            ma[8] * ma[5] * ma[15]+ 
+            ma[8] * ma[7] * ma[13] + 
+            ma[12]* ma[5] * ma[11] - 
+            ma[12]* ma[7] * ma[9];
+
+    mo[12] = -ma[4] * ma[9] * ma[14] + 
+              ma[4] * ma[10]* ma[13] + 
+              ma[8] * ma[5] * ma[14] - 
+              ma[8] * ma[6] * ma[13] - 
+              ma[12]* ma[5] * ma[10] + 
+              ma[12]* ma[6] * ma[9];
+
+    mo[1] = -ma[1] * ma[10]* ma[15] + 
+             ma[1] * ma[11]* ma[14] + 
+             ma[9] * ma[2] * ma[15] - 
+             ma[9] * ma[3] * ma[14] - 
+             ma[13]* ma[2] * ma[11] + 
+             ma[13]* ma[3] * ma[10];
+
+    mo[5] = ma[0] * ma[10]* ma[15] - 
+            ma[0] * ma[11]* ma[14] - 
+            ma[8] * ma[2] * ma[15] + 
+            ma[8] * ma[3] * ma[14] + 
+            ma[12]* ma[2] * ma[11] - 
+            ma[12]* ma[3] * ma[10];
+
+    mo[9] = -ma[0] * ma[9] * ma[15] + 
+             ma[0] * ma[11]* ma[13] + 
+             ma[8] * ma[1] * ma[15] - 
+             ma[8] * ma[3] * ma[13] - 
+             ma[12]* ma[1] * ma[11] + 
+             ma[12]* ma[3] * ma[9];
+
+    mo[13] = ma[0] * ma[9] * ma[14] - 
+             ma[0] * ma[10]* ma[13] - 
+             ma[8] * ma[1] * ma[14] + 
+             ma[8] * ma[2] * ma[13] + 
+             ma[12]* ma[1] * ma[10] - 
+             ma[12]* ma[2] * ma[9];
+
+    mo[2] =  ma[1] * ma[6] * ma[15] - 
+             ma[1] * ma[7] * ma[14] - 
+             ma[5] * ma[2] * ma[15] + 
+             ma[5] * ma[3] * ma[14] + 
+             ma[13]* ma[2] * ma[7] - 
+             ma[13]* ma[3] * ma[6];
+
+    mo[6] = -ma[0] * ma[6] * ma[15] + 
+             ma[0] * ma[7] * ma[14] + 
+             ma[4] * ma[2] * ma[15] - 
+             ma[4] * ma[3] * ma[14] - 
+             ma[12]* ma[2] * ma[7] + 
+             ma[12]* ma[3] * ma[6];
+
+    mo[10] = ma[0] * ma[5] * ma[15] - 
+             ma[0] * ma[7] * ma[13] - 
+             ma[4] * ma[1] * ma[15] + 
+             ma[4] * ma[3] * ma[13] + 
+             ma[12]* ma[1] * ma[7] - 
+             ma[12]* ma[3] * ma[5];
+
+    mo[14] = -ma[0] * ma[5] * ma[14] + 
+              ma[0] * ma[6] * ma[13] + 
+              ma[4] * ma[1] * ma[14] - 
+              ma[4] * ma[2] * ma[13] - 
+              ma[12]* ma[1] * ma[6] + 
+              ma[12]* ma[2] * ma[5];
+
+    mo[3] = -ma[1] * ma[6] * ma[11] + 
+             ma[1] * ma[7] * ma[10] + 
+             ma[5] * ma[2] * ma[11] - 
+             ma[5] * ma[3] * ma[10] - 
+             ma[9] * ma[2] * ma[7] + 
+             ma[9] * ma[3] * ma[6];
+
+    mo[7] = ma[0] * ma[6] * ma[11] - 
+            ma[0] * ma[7] * ma[10] - 
+            ma[4] * ma[2] * ma[11] + 
+            ma[4] * ma[3] * ma[10] + 
+            ma[8] * ma[2] * ma[7] - 
+            ma[8] * ma[3] * ma[6];
+
+    mo[11] = -ma[0] * ma[5] * ma[11] + 
+              ma[0] * ma[7] * ma[9] + 
+              ma[4] * ma[1] * ma[11] - 
+              ma[4] * ma[3] * ma[9] - 
+              ma[8] * ma[1] * ma[7] + 
+              ma[8] * ma[3] * ma[5];
+
+    mo[15] = ma[0] * ma[5] * ma[10] - 
+             ma[0] * ma[6] * ma[9] - 
+             ma[4] * ma[1] * ma[10] + 
+             ma[4] * ma[2] * ma[9] + 
+             ma[8] * ma[1] * ma[6] -
+             ma[8] * ma[2] * ma[5];
+
+    float dt = ma[0] * mo[0] + ma[1] * mo[4] + ma[2] * mo[8] + ma[3] * mo[12];
+
+    float Inverse = 1.0f / dt;
+
+    for(int i = 0; i < 16; i++)
+    {
+        mo[i] *= Inverse;
+    }
+
+    return r;
+}
+
 #endif
