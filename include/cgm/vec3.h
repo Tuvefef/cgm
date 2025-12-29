@@ -8,8 +8,7 @@
  * This file defines functions to work with 3D vectors including basic operations and vector algebra inspired by GLSL
  */
 
-#include "util/core.h"
-#include "ugm.h"
+#include "core.h"
 #include "structs/stcvec3.h"
 #include <math.h>
 
@@ -185,12 +184,12 @@ CGMINLINE float gmVec3distance(vec3 a, vec3 b)
  * @param v incident vector
  * @param n normal
  * 
- * @note if `CGM_AUTO_NORMALIZE` is defined,
+ * @note if `CGM_ASSUME_NORMALIZED` is 0,
  * normal is automatically normalized
  */
 CGMINLINE vec3 gmVec3reflect(vec3 v, vec3 n)
 {
-#if CGM_AUTO_NORMALIZE
+#if !CGM_ASSUME_NORMALIZED
     n = gmVec3normalize(n);
 #endif  
     float d = gmVec3dot(v, n);
@@ -204,12 +203,12 @@ CGMINLINE vec3 gmVec3reflect(vec3 v, vec3 n)
  * @param n surface normal
  * @param e refractive index (eta)
  * 
- * @note if `CGM_AUTO_NORMALIZE` is defined,
+ * @note if `CGM_ASSUME_NORMALIZED` is 0,
  * normal is automatically normalized
  */
 CGMINLINE vec3 gmVec3refract(vec3 v, vec3 n, float e)
 {
-#if CGM_AUTO_NORMALIZE
+#if !CGM_ASSUME_NORMALIZED
     n = gmVec3normalize(n);
 #endif
     float d = gmVec3dot(n, v);

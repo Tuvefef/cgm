@@ -8,8 +8,7 @@
  * This file defines functions to work with 4D vectors including basic operations and vector algebra inspired by GLSL
  */
 
-#include "util/core.h"
-#include "ugm.h"
+#include "core.h"
 #include "structs/stcvec4.h"
 #include <math.h>
 

@@ -1,23 +1,25 @@
-#ifndef UTIL_GRAPHICS_MATH
-#define UTIL_GRAPHICS_MATH
 
 /**
  * @file ugm.h
+ * @brief macros:
+ *  `GCM_ASSUME_NORMALIZED`: assume that certain vectors are normalized
  */
+#ifndef UTIL_GRAPHICS_MATH
+#define UTIL_GRAPHICS_MATH
 
-#include "util/core.h"
+#include "../core.h"
 #include <math.h>
 
 #define CGM_EPSILON 1e-8f
-#ifndef CGM_AUTO_NORMALIZE
+#ifndef CGM_ASSUME_NORMALIZED
 /*
- * @brief `GCM_ASSUME_NORMALIZED`
- *assume that certain vectors are normalized.
- *will not internally normalize normal vectors
+ * @brief `CGM_ASSUME_NORMALIZED`
+ * assume that certain vectors are already normalized.
+ * disables internal normalization for performance.
  *
- *default: 0
+ * default: 1
  */
-#define CGM_AUTO_NORMALIZE 0
+#define CGM_ASSUME_NORMALIZED 1
 #endif
 
 #define GMMIN(x, y) (((x) < (y)) ? (x) : (y))

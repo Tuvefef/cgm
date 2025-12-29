@@ -8,8 +8,7 @@
  * This file defines functions to work with 2D vectors including basic operations and vector algebra inspired by GLSL
  */
 
-#include "util/core.h"
-#include "ugm.h"
+#include "core.h"
 #include "structs/stcvec2.h"
 #include <math.h>
 
@@ -160,12 +159,12 @@ CGMINLINE float gmVec2distance(vec2 a, vec2 b)
  * @param v incident vector
  * @param n normal
  * 
- * @note if `CGM_AUTO_NORMALIZE` is defined,
+ * @note if `CGM_ASSUME_NORMALIZED` is 0,
  * normal is automatically normalized
  */
 CGMINLINE vec2 gmVec2reflect(vec2 v, vec2 n)
 {
-#if CGM_AUTO_NORMALIZE
+#if !CGM_ASSUME_NORMALIZED
     n = gmVec2normalize(n);
 #endif
     float d = gmVec2dot(v, n);
@@ -179,12 +178,12 @@ CGMINLINE vec2 gmVec2reflect(vec2 v, vec2 n)
  * @param n surface normal
  * @param e refractive index (eta)
  * 
- * @note if `CGM_AUTO_NORMALIZE` is defined,
+ * @note if `CGM_ASSUME_NORMALIZED` is 0,
  * normal is automatically normalized
  */
 CGMINLINE vec2 gmVec2refract(vec2 v, vec2 n, float e)
 {
-#if CGM_AUTO_NORMALIZE
+#if !CGM_ASSUME_NORMALIZED
     n = gmVec2normalize(n);
 #endif
     float d = gmVec2dot(n, v);
